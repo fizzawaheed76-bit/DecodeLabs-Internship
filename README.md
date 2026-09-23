@@ -1,202 +1,185 @@
-# 💻 Computer Career Advisor
+# Project 2 - Data Classification Using AI
 
-## 📌 Project Description
+## Project Overview
 
-**Computer Career Advisor** is a Python-based project designed to help users explore different computer and technology career fields.
+This project is part of the DecodeLabs internship. It demonstrates a
+basic supervised machine learning classification model using student
+data.
 
-The program allows the user to select a career and view:
+The model predicts a student's `Result` (Pass or Fail) using:
 
-* 📚 Career Path
-* 💼 Possible Careers
-* 🛠 Recommended Skills
+-   Study Hours
+-   Attendance
+-   Previous Marks
 
-The project contains information for **21 computer career fields**.
+A **Decision Tree Classifier** is used for classification.
 
-## 🚀 Features
+## Project Goals
 
-* Select from 21 computer career fields
-* View the career path for a selected field
-* View possible career opportunities
-* View recommended skills
-* Return to the career selection menu
-* Handle invalid career selections
-* Handle invalid menu options
-* Exit the application when required
+-   Load and understand a dataset
+-   Select features and a target
+-   Split data into training and testing sets
+-   Apply a classification algorithm
+-   Train the model
+-   Make predictions
+-   Evaluate the model
 
-## 📚 Available Career Fields
+## Technologies Used
 
-1. Artificial Intelligence
-2. Data Science
-3. Data Analytics
-4. Machine Learning
-5. Deep Learning
-6. Python Development
-7. Web Development
-8. App Development
-9. Cybersecurity
-10. Cloud Computing
-11. Networking
-12. DevOps
-13. Database
-14. Software Engineering
-15. Game Development
-16. Robotics
-17. Computer Vision
-18. NLP
-19. Blockchain
-20. System Administration
-21. QA & Testing
+-   Python
+-   Pandas
+-   Scikit-learn
+-   Decision Tree Classifier
 
-## 🛠 Technologies Used
+## Dataset
 
-* Python
-* Dictionaries
-* Loops
-* `while` loop
-* `for` loop
-* `if / elif / else`
-* User input
-* Conditional logic
-* Data structures
+The dataset is expected to contain these columns:
 
-## ⚙️ How the Program Works
+  Column            Description
+  ----------------- ----------------------------
+  `StudyHours`      Number of hours studied
+  `Attendance`      Student attendance
+  `PreviousMarks`   Student's previous marks
+  `Result`          Target class: Pass or Fail
 
-### 1. Select a Career
+## Machine Learning Workflow
 
-The program displays the available computer career fields.
-
-The user selects a career using its number.
-
-Example:
-
-```text
-1. Artificial Intelligence
-2. Data Science
-3. Data Analytics
-4. Machine Learning
-...
-21. QA & Testing
-0. Exit
+``` text
+Dataset
+   ↓
+Load Data
+   ↓
+Understand Data
+   ↓
+Select Features and Target
+   ↓
+Train-Test Split
+   ↓
+Decision Tree Classifier
+   ↓
+Train Model
+   ↓
+Make Predictions
+   ↓
+Evaluate Model
 ```
 
-### 2. Select Information
+## Features and Target
 
-After selecting a career, the user gets four main choices:
+The input features are:
 
-```text
-1. Career Path
-2. Possible Careers
-3. Recommended Skills
-4. Back to Career Selection
-5. Exit
+``` python
+X = df[["StudyHours", "Attendance", "PreviousMarks"]]
 ```
 
-### 3. Career Path
+The target is:
 
-The program displays the learning path for the selected career.
-
-Example:
-
-```text
-Python → NumPy/Pandas → Mathematics
-→ Machine Learning → Deep Learning
-→ AI Projects → Deployment
+``` python
+y = df["Result"]
 ```
 
-### 4. Possible Careers
+## Train-Test Split
 
-The program displays possible job roles related to the selected field.
+The project uses an 80/20 split:
 
-Example:
+-   80% for training
+-   20% for testing
 
-```text
-AI Engineer
-AI Developer
-Machine Learning Engineer
+``` python
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
 ```
 
-### 5. Recommended Skills
+## Classification Algorithm
 
-The program displays the skills that can be learned for the selected career.
+The project uses:
 
-Example:
-
-```text
-Python
-NumPy
-Pandas
-Machine Learning
-Deep Learning
-Data Visualization
+``` python
+model = DecisionTreeClassifier(random_state=42)
 ```
 
-## 🔄 Program Flow
+The model is trained with:
 
-```text
-Start
-  ↓
-Display Computer Careers
-  ↓
-Select Career
-  ↓
-Is Career Valid?
-  ├── No → Show Error → Select Again
-  │
-  └── Yes
-       ↓
-   Information Menu
-       ↓
-   ┌───────────────┐
-   │ Career Path   │
-   │ Possible Jobs │
-   │ Skills        │
-   │ Back          │
-   │ Exit          │
-   └───────────────┘
+``` python
+model.fit(X_train, y_train)
 ```
 
-## 📂 Project Structure
+## Model Evaluation
 
-```text
-Computer-Career-Advisor/
-│
-├── career_advisor.py
-└── README.md
+The project evaluates the model using:
+
+``` python
+accuracy_score(y_test, y_pred)
 ```
 
-## ▶️ How to Run
+and:
 
-Make sure Python is installed on your computer.
-
-Open the project folder in VS Code and run:
-
-```bash
-python career_advisor.py
+``` python
+classification_report(y_test, y_pred)
 ```
 
-Or click the **Run Python File** button in VS Code.
+## New Student Prediction
 
-## 🎯 Project Objective
+The code also predicts a new student's result:
 
-The main objective of this project is to provide beginners with a simple way to explore computer-related career fields and understand the learning path, possible career opportunities, and recommended skills for each field.
+``` python
+new_student = [[7, 85, 68]]
+prediction = model.predict(new_student)
+```
 
-## 🔮 Future Improvements
+The values represent:
 
-Possible future improvements include:
+-   Study Hours = 7
+-   Attendance = 85
+-   Previous Marks = 68
 
-* Convert the project into a Gradio web application
-* Add a graphical user interface
-* Add career search
-* Add career filtering
-* Add detailed descriptions for each career
-* Add learning resources
-* Add links to courses and documentation
-* Deploy the application online
+## Installation
 
-## 👩‍💻 Author
+Install the required libraries:
 
-**Fizza Waheed**
+``` bash
+pip install pandas scikit-learn
+```
 
-Bachelor of Science in Artificial Intelligence (BSAI)
+## How to Run
 
-Interested in Artificial Intelligence, Machine Learning, Deep Learning, Python, and Data Analytics.
+The current project code loads the CSV from this Google Colab path:
+
+``` python
+df = pd.read_csv("/content/drive/MyDrive/student.csv.csv")
+```
+
+If you are running the project in VS Code, place the CSV file in the
+project folder and use:
+
+``` python
+df = pd.read_csv("student.csv.csv")
+```
+
+Then run:
+
+``` bash
+python decode_lab_project_2.py
+```
+
+## Skills Learned
+
+-   Data handling with Pandas
+-   Feature and target selection
+-   Train-test splitting
+-   Supervised learning basics
+-   Classification
+-   Decision Tree
+-   Model training
+-   Prediction
+-   Accuracy evaluation
+-   Classification report
+
+## Project Information
+
+**Internship:** DecodeLabs\
+**Project:** Project 2 - Data Classification Using AI
