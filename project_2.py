@@ -1,0 +1,54 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# 1. Load the dataset
+df = pd.read_csv("students.csv")
+
+# 2. Understand the dataset
+print("First 5 rows:")
+print(df.head())
+
+print("\nDataset Information:")
+print(df.info())
+
+print("\nDataset Shape:")
+print(df.shape)
+
+# 3. Separate features and target
+X = df[["StudyHours", "Attendance", "PreviousMarks"]]
+y = df["Result"]
+
+# 4. Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+# 5. Create the classification model
+model = DecisionTreeClassifier(random_state=42)
+
+# 6. Train the model
+model.fit(X_train, y_train)
+
+# 7. Make predictions
+y_pred = model.predict(X_test)
+
+# 8. Check accuracy
+accuracy = accuracy_score(y_test, y_pred)
+
+print("\nModel Accuracy:", accuracy)
+
+# 9. Classification report
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# 10. Predict a new student's result
+new_student = [[7, 85, 68]]
+
+prediction = model.predict(new_student)
+
+print("\nNew Student Prediction:", prediction[0])

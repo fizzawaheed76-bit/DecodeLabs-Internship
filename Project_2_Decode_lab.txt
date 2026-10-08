@@ -1,0 +1,45 @@
+# Project 2 - Data Classification Using AI
+
+## Description
+
+This project demonstrates a basic supervised machine learning
+classification model using a student performance dataset.
+
+## Objective
+
+The model predicts whether a student will Pass or Fail based on:
+
+- Study Hours
+- Attendance
+- Previous Marks
+
+## Technologies Used
+
+- Python
+- Pandas
+- Scikit-learn
+
+## Machine Learning Algorithm
+
+Decision Tree Classifier
+
+## Machine Learning Process
+
+1. Load the dataset
+2. Understand the dataset
+3. Select features and target
+4. Split data into training and testing sets
+5. Train the classification model
+6. Make predictions
+7. Evaluate model accuracy
+
+## Skills Learned
+
+- Data handling
+- Features and target
+- Train-test split
+- Supervised learning
+- Classification
+- Model training
+- Prediction
+- Model evaluation
